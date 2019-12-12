@@ -11,25 +11,28 @@ using namespace std;
 
 namespace DataStructuresandAlgorithmsTest
 {
-	TEST_CLASS(DataStructuresandAlgorithmsTest)
+	TEST_CLASS(TestLinkedList)
 	{
 	public:
-		
-		TEST_METHOD(TestLinkedList)
+		TEST_METHOD(TestLinkedList1)
 		{
-			LinkedList<int> *list = new LinkedList<int>();
+			LinkedList<int>* list = new LinkedList<int>();
 			Assert::AreEqual(list->size(), 0, std::wstring(L"List should be empty").c_str());
 
 			list->addFirst(5);
 			list->addFirst(4);
 			list->addFirst(3);
 
-			Assert::AreEqual(3, list->size(),std::wstring(L"List should be size 3").c_str());
+			Assert::AreEqual(3, list->size(), std::wstring(L"List should be size 3").c_str());
 			Assert::AreEqual(3, list->removeFirst(), std::wstring(L"First element should be 3").c_str());
-			Assert::AreEqual(4, list->removeFirst(),std::wstring(L"First element should be 4").c_str());
-			Assert::AreEqual(5, list->removeFirst(),std::wstring(L"First element should be 5").c_str());
-			Assert::AreEqual(0, list->size(),std::wstring(L"List should be size 0").c_str());
-
+			Assert::AreEqual(4, list->removeFirst(), std::wstring(L"First element should be 4").c_str());
+			Assert::AreEqual(5, list->removeFirst(), std::wstring(L"First element should be 5").c_str());
+			Assert::AreEqual(0, list->size(), std::wstring(L"List should be size 0").c_str());
+		}
+		
+		TEST_METHOD(TestLinkedList2)
+		{
+			LinkedList<int>* list = new LinkedList<int>();
 			list->addFirst(5);
 			list->addLast(6);
 			list->addLast(7);
@@ -39,7 +42,11 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(6, list->removeFirst(), std::wstring(L"First element should be 6").c_str());
 			Assert::AreEqual(7, list->removeFirst(), std::wstring(L"First element should be 7").c_str());
 			Assert::AreEqual(0, list->size(), std::wstring(L"List should be size 0").c_str());
+		}
 
+		TEST_METHOD(TestLinkedList3)
+		{
+			LinkedList<int>* list = new LinkedList<int>();
 			list->addFirst(5);
 			list->addLast(6);
 			list->addFirst(4);
@@ -51,7 +58,11 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(5, list->removeFirst(), std::wstring(L"First element should be 5").c_str());
 			Assert::AreEqual(6, list->removeFirst(), std::wstring(L"First element should be 6").c_str());
 			Assert::AreEqual(0, list->size(), std::wstring(L"List should be size 0").c_str());
+		}
 
+		TEST_METHOD(TestLinkedList4) {
+
+			LinkedList<int>* list = new LinkedList<int>();
 			list->addFirst(4);
 			list->addFirst(3);
 			list->addLast(5);
@@ -63,7 +74,11 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(3, list->removeLast(), std::wstring(L"Last element should be 3").c_str());
 			Assert::AreEqual(2, list->removeLast(), std::wstring(L"Last element should be 2").c_str());
 			Assert::AreEqual(0, list->size(), std::wstring(L"List should be size 0").c_str());
+		}
 
+		TEST_METHOD(TestLinkedList5) {
+
+			LinkedList<int>* list = new LinkedList<int>();
 			list->addFirst(1);
 			list->addLast(2);
 			list->addLast(3);
@@ -75,20 +90,28 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(3, list->removeFirst(), std::wstring(L"First element should be 3").c_str());
 			Assert::AreEqual(4, list->removeFirst(), std::wstring(L"First element should be 4").c_str());
 			Assert::AreEqual(0, list->size(), std::wstring(L"List should be size 0").c_str());
-			
-			Assert::IsNull(list->remove(2), std::wstring(L"Removing element not in list should return null.").c_str());			
 
+			Assert::IsNull(list->remove(2), std::wstring(L"Removing element not in list should return null.").c_str());
+		}
+
+		TEST_METHOD(TestLinkedList6) {
+
+			LinkedList<int>* list = new LinkedList<int>();
 			list->addFirst(1);
 			list->insertAfter(1, 3);
 			list->insertBefore(3, 2);
 			list->insertAfter(3, 4);
-			
+
 			Assert::AreEqual(4, list->size(), std::wstring(L"List should be size 4").c_str());
 			Assert::AreEqual(1, list->removeFirst(), std::wstring(L"First element should be 1").c_str());
 			Assert::AreEqual(2, list->removeFirst(), std::wstring(L"First element should be 2").c_str());
 			Assert::AreEqual(3, list->removeFirst(), std::wstring(L"First element should be 3").c_str());
 			Assert::AreEqual(4, list->removeFirst(), std::wstring(L"First element should be 4").c_str());
+		}
 
+		TEST_METHOD(TestLinkedList7) {
+
+			LinkedList<int>* list = new LinkedList<int>();
 			list->addFirst(1);
 			list->addLast(2);
 			list->addLast(3);
@@ -99,7 +122,7 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(6, list->size(), std::wstring(L"List should be size 6").c_str());
 
 			Assert::AreEqual(1, list->removeAtPosition(0), std::wstring(L"Element at position 0 should be 1").c_str());
-			
+
 			auto func = [list] {list->removeAtPosition(6); };
 			Assert::ExpectException<std::out_of_range>(func, std::wstring(L"Remove at invalid index should throw exception").c_str());
 
