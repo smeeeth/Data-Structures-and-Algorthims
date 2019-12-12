@@ -1,4 +1,5 @@
 #include "LinkedList.h"
+#include <stdexcept>
 
 //default constructor
 template<class T>
@@ -75,8 +76,9 @@ void LinkedList<T>::insertAfter(T val, T toInsert) {
 	Node<T>* node = head;
 	while (node != nullptr) {
 		if (node->getValue() == val) {
-			Node<T>* insert = new Node<T>(val, node->getNext());
+			Node<T>* insert = new Node<T>(toInsert, node->getNext());
 			node->setNext(insert);
+			count++;
 			return;
 		}
 		node = node->getNext();
@@ -89,8 +91,9 @@ void LinkedList<T>::insertBefore(T val, T toInsert) {
 	Node<T>* node = head;
 	while (node->getNext() != nullptr) {
 		if (node->getNext()->getValue() == val) {
-			Node<T>* insert = new Node<T>(val, node->getNext());
+			Node<T>* insert = new Node<T>(toInsert, node->getNext());
 			node->setNext(insert);
+			count++;
 			return;
 		}
 		node = node->getNext();
@@ -107,7 +110,6 @@ Node<T>* LinkedList<T>::remove(T val) {
 			Node<T> *remove = node->getNext();
 			Node<T>* connect = remove->getNext();
 			node->setNext(remove->getNext());
-			delete remove;
 			count--;
 			return node;
 		}
@@ -116,21 +118,27 @@ Node<T>* LinkedList<T>::remove(T val) {
 	return nullptr;
 }
 
-//remove item at designated position; returns null if position is out of bounds
+//remove item at designated position; throws exception if position is out of bounds
 template<class T>
 T LinkedList<T>::removeAtPosition(int i) {
-	if (size() < 1) return nullptr;
+	if (i > count - 1) throw out_of_range("Invalid Index");
 	Node<T>* node = head;
-	if (i > count - 1)
-		return nullptr;
-	while (i > 0) {
-		i--;
+	T val;
+	//if removing head
+	if (i == 0) {
+		val = head->getValue();
+		head = head->getNext();
+	}
+	else {
+		while (i > 0) {
+			i--;
+			node = node->getNext();
+		}
+		val = node->getValue();
 		node = node->getNext();
 	}
-	delete node;
 	count--;
-	return node->getValue();
-
+	return val;
 }
 
 //return size of linked list

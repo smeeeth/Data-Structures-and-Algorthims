@@ -77,6 +77,33 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(0, list->size(), std::wstring(L"List should be size 0").c_str());
 			
 			Assert::IsNull(list->remove(2), std::wstring(L"Removing element not in list should return null.").c_str());			
+
+			list->addFirst(1);
+			list->insertAfter(1, 3);
+			list->insertBefore(3, 2);
+			list->insertAfter(3, 4);
+			
+			Assert::AreEqual(4, list->size(), std::wstring(L"List should be size 4").c_str());
+			Assert::AreEqual(1, list->removeFirst(), std::wstring(L"First element should be 1").c_str());
+			Assert::AreEqual(2, list->removeFirst(), std::wstring(L"First element should be 2").c_str());
+			Assert::AreEqual(3, list->removeFirst(), std::wstring(L"First element should be 3").c_str());
+			Assert::AreEqual(4, list->removeFirst(), std::wstring(L"First element should be 4").c_str());
+
+			list->addFirst(1);
+			list->addLast(2);
+			list->addLast(3);
+			list->addLast(4);
+			list->addLast(5);
+			list->addLast(6);
+
+			Assert::AreEqual(6, list->size(), std::wstring(L"List should be size 6").c_str());
+
+			Assert::AreEqual(1, list->removeAtPosition(0), std::wstring(L"Element at position 0 should be 1").c_str());
+			
+			auto func = [list] {list->removeAtPosition(6); };
+			Assert::ExpectException<std::out_of_range>(func, std::wstring(L"Remove at invalid index should throw exception").c_str());
+
+			Assert::AreEqual(6, list->removeAtPosition(4), std::wstring(L"Element at position 5 should be 6").c_str());
 		}
 	};
 }
