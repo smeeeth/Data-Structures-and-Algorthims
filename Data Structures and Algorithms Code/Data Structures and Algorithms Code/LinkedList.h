@@ -1,7 +1,6 @@
 #pragma once
 #include "Node.h"
 
-
 using namespace std;
 
 template <class T>
@@ -21,7 +20,6 @@ public:
 	int size();
 
 private:
-	bool isValid();
 	Node<T> *head;
 	int count;
 };

@@ -1,9 +1,13 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "LinkedList.h"
-#include "LinkedList.cpp"
 #include "Node.h"
 #include "Node.cpp"
+#include "LinkedList.h"
+#include "LinkedList.cpp"
+#include "Queue.h"
+#include "Queue.cpp"
+#include "Stack.h"
+#include "Stack.cpp"
 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -127,6 +131,67 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::ExpectException<std::out_of_range>(func, std::wstring(L"Remove at invalid index should throw exception").c_str());
 
 			Assert::AreEqual(6, list->removeAtPosition(4), std::wstring(L"Element at position 5 should be 6").c_str());
+		}
+
+		
+	};
+
+	TEST_CLASS(TestQueue)
+	{
+	public:
+		TEST_METHOD(TestQueue1) {
+			Queue<int>* queue = new Queue<int>();
+			
+			queue->enqueue(5);
+			queue->enqueue(4);
+			queue->enqueue(3);
+			queue->enqueue(2);
+			queue->enqueue(1);
+
+			Assert::AreEqual(5, queue->size(), std::wstring(L"Queue should be size 5").c_str());
+			Assert::AreEqual(1, queue->dequeue(), std::wstring(L"Element at top of queue should be 1").c_str());
+			Assert::AreEqual(2, queue->dequeue(), std::wstring(L"Element at top of queue should be 2").c_str());
+			Assert::AreEqual(3, queue->dequeue(), std::wstring(L"Element at top of queue should be 3").c_str());
+			
+			queue->enqueue(10);
+
+
+			Assert::AreEqual(3, queue->size(), std::wstring(L"Queue should be size 3").c_str());
+			Assert::AreEqual(10, queue->dequeue(), std::wstring(L"Element at top of queue should be 10").c_str());
+			Assert::AreEqual(4, queue->dequeue(), std::wstring(L"Element at top of queue should be 4").c_str());
+			Assert::AreEqual(5, queue->dequeue(), std::wstring(L"Element at top of queue should be 5").c_str());
+			
+
+			Assert::AreEqual(0, queue->size(), std::wstring(L"Queue should be size 0").c_str());
+		}
+	};
+
+	TEST_CLASS(TestStack)
+	{
+	public:
+		TEST_METHOD(TestStack1) {
+			Stack<int>* stack = new Stack<int>();
+
+			stack->push(1);
+			stack->push(2);
+			stack->push(3);
+			stack->push(4);
+			stack->push(5);
+
+			Assert::AreEqual(5, stack->size(), std::wstring(L"Stack should be size 5").c_str());
+			Assert::AreEqual(1, stack->pop(), std::wstring(L"Element at top of queue should be 1").c_str());
+			Assert::AreEqual(2, stack->peek(), std::wstring(L"Element at top of queue should be 2").c_str());
+			Assert::AreEqual(2, stack->pop(), std::wstring(L"Element at top of queue should be 2").c_str());
+			Assert::AreEqual(3, stack->pop(), std::wstring(L"Element at top of queue should be 3").c_str());
+
+			stack->push(10);
+
+			Assert::AreEqual(4, stack->pop(), std::wstring(L"Queue should be size 4").c_str());
+			Assert::AreEqual(5, stack->pop(), std::wstring(L"Element at top of queue should be 5").c_str());
+			Assert::AreEqual(10, stack->pop(), std::wstring(L"Element at top of queue should be 10").c_str());
+
+
+			Assert::AreEqual(0, stack->size(), std::wstring(L"Queue should be size 0").c_str());
 		}
 	};
 }
