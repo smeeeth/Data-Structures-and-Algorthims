@@ -8,6 +8,7 @@ class Node
 public:
 	Node();
 	Node(T& item, Node<T>* next = NULL);
+	~Node();
 	//accessors
 	Node<T>* getNext();
 	void setNext(Node<T>* node);

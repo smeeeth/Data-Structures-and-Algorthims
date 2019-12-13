@@ -9,6 +9,7 @@ class LinkedList
 public:
 	LinkedList();
 	LinkedList(T first);
+	~LinkedList();
 	void addFirst(T value);
 	void addLast(T value);
 	T removeFirst();

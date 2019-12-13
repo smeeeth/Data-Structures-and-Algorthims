@@ -15,6 +15,20 @@ LinkedList<T>::LinkedList(T first){
 	count++;
 }
 
+//delete list
+template<class T>
+LinkedList<T>::~LinkedList() {
+	if (head == nullptr) return;
+	Node<T>* node = head;
+	Node<T>* next;
+	while (node->getNext() != nullptr) {
+		next = node->getNext();
+		delete node;
+		node = next;
+	}
+	delete node;
+}
+
 //adds value at head position
 template<class T>
 void LinkedList<T>::addFirst(T value) {

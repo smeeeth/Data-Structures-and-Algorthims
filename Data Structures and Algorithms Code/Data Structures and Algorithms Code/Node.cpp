@@ -14,6 +14,11 @@ Node<T>::Node(T& item, Node<T>* next)
 	this->next = next;
 }
 
+//destructor
+template<class T>
+Node<T>::~Node() {
+}
+
 //getter for next node
 template<class T>
 Node<T>* Node<T>::getNext()
