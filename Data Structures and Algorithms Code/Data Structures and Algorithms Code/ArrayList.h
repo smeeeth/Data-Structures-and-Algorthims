@@ -6,7 +6,9 @@ template <class T>
 class ArrayList
 {
 public:
-	ArrayList();
+	ArrayList(int size = 2);
+
+	ArrayList(T defaultVal, int size = 2);
 
 	~ArrayList();
 
@@ -19,9 +21,9 @@ public:
 	int size();
 
 private:
-	int count;
 	int realSize;
 	T* data = nullptr;
+	T defaultVal;
 
 	void expand();
 

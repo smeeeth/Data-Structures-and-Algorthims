@@ -192,8 +192,6 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(5, stack->pop(), std::wstring(L"Element at top of queue should be 5").c_str());
 			Assert::AreEqual(10, stack->pop(), std::wstring(L"Element at top of queue should be 10").c_str());
 
-
-			Assert::AreEqual(0, stack->size(), std::wstring(L"Queue should be size 0").c_str());
 		}
 	};
 
@@ -209,7 +207,6 @@ namespace DataStructuresandAlgorithmsTest
 			list->set(4, 3);
 			list->set(5, 4);
 
-			Assert::AreEqual(5, list->size(), std::wstring(L"ArrayList should be size 5").c_str());
 			Assert::AreEqual(1, list->get(0), std::wstring(L"Element at index 0 should be 1").c_str());
 			Assert::AreEqual(2, list->get(1), std::wstring(L"Element at index 1 should be 2").c_str());
 			Assert::AreEqual(3, list->get(2), std::wstring(L"Element at index 2 should be 3").c_str());
@@ -225,14 +222,12 @@ namespace DataStructuresandAlgorithmsTest
 			list->set(5, 4);
 			list->set(2, 1);
 			
-			Assert::AreEqual(3, list->size(), std::wstring(L"ArrayList should be size 3").c_str());
 			Assert::AreEqual(1, list->get(0), std::wstring(L"Element at index 0 should be 1").c_str());
 			Assert::AreEqual(2, list->get(1), std::wstring(L"Element at index 1 should be 2").c_str());
 			Assert::AreEqual(5, list->get(4), std::wstring(L"Element at index 2 should be 5").c_str());
 			
 			list->set(3, 2);
 
-			Assert::AreEqual(4, list->size(), std::wstring(L"ArrayList should be size 4").c_str());
 			Assert::AreEqual(1, list->get(0), std::wstring(L"Element at index 0 should be 1").c_str());
 			Assert::AreEqual(2, list->get(1), std::wstring(L"Element at index 1 should be 2").c_str());
 			Assert::AreEqual(3, list->get(2), std::wstring(L"Element at index 2 should be 3").c_str());
@@ -240,7 +235,6 @@ namespace DataStructuresandAlgorithmsTest
 
 			list->set(4, 3);
 
-			Assert::AreEqual(5, list->size(), std::wstring(L"ArrayList should be size 5").c_str());
 			Assert::AreEqual(1, list->get(0), std::wstring(L"Element at index 0 should be 1").c_str());
 			Assert::AreEqual(2, list->get(1), std::wstring(L"Element at index 1 should be 2").c_str());
 			Assert::AreEqual(3, list->get(2), std::wstring(L"Element at index 2 should be 3").c_str());
@@ -280,5 +274,55 @@ namespace DataStructuresandAlgorithmsTest
 
 		}
 
+		TEST_METHOD(TestArrayList4) {
+			ArrayList<bool>* list = new ArrayList<bool>(false, 10);
+
+			list->set(true, 1);
+			list->set(true, 3);
+			list->set(true, 5);
+			list->set(true, 7);
+			list->set(true, 9);
+
+			Assert::AreEqual(false, list->get(0), std::wstring(L"Element at index 0 should be false").c_str());
+			Assert::AreEqual(true, list->get(1), std::wstring(L"Element at index 1 should be true").c_str());
+			Assert::AreEqual(false, list->get(2), std::wstring(L"Element at index 2 should be false").c_str());
+			Assert::AreEqual(true, list->get(3), std::wstring(L"Element at index 3 should be true").c_str());
+			Assert::AreEqual(false, list->get(4), std::wstring(L"Element at index 4 should be false").c_str());
+			Assert::AreEqual(true, list->get(5), std::wstring(L"Element at index 5 should be true").c_str());
+			Assert::AreEqual(false, list->get(6), std::wstring(L"Element at index 6 should be false").c_str());
+			Assert::AreEqual(true, list->get(7), std::wstring(L"Element at index 7 should be true").c_str());
+			Assert::AreEqual(false, list->get(8), std::wstring(L"Element at index 8 should be false").c_str());
+		}
+
+		TEST_METHOD(TestArrayList5) {
+			ArrayList<int>* list = new ArrayList<int>();
+
+			list->set(1, 0);
+			list->set(2, 1);
+			list->set(3, 2);
+			list->set(4, 3);
+			list->set(5, 4);
+
+			Assert::AreEqual(0, list->indexOf(1), std::wstring(L"Element 1 should be at index 0").c_str());
+			Assert::AreEqual(1, list->indexOf(2), std::wstring(L"Element 2 should be at index 1").c_str());
+			Assert::AreEqual(2, list->indexOf(3), std::wstring(L"Element 3 should be at index 2").c_str());
+			Assert::AreEqual(3, list->indexOf(4), std::wstring(L"Element 4 should be at index 3").c_str());
+			Assert::AreEqual(4, list->indexOf(5), std::wstring(L"Element 5 should be at index 4").c_str());
+
+			list->set(6, 2);
+			Assert::AreEqual(2, list->indexOf(6), std::wstring(L"Element 6 should be at index 2").c_str());
+
+		}
+
+		TEST_METHOD(TestArrayList6) {
+			ArrayList<LinkedList<int>*>* list = new ArrayList<LinkedList<int>*>(new LinkedList<int>(), 10);
+			
+			list->get(0)->addFirst(5);
+
+			LinkedList<int>* firstList = list->get(0);
+			Assert::AreEqual(1, firstList->size(), std::wstring(L"List should be size 1").c_str());
+			Assert::AreEqual(5, firstList->removeFirst(), std::wstring(L"First element should be 5").c_str());
+			Assert::AreEqual(0, firstList->size(), std::wstring(L"List should be empty").c_str());
+		}
 	};
 }
