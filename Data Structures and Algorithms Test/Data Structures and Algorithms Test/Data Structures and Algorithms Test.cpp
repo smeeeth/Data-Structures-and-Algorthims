@@ -323,6 +323,7 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(1, firstList->size(), std::wstring(L"List should be size 1").c_str());
 			Assert::AreEqual(5, firstList->removeFirst(), std::wstring(L"First element should be 5").c_str());
 			Assert::AreEqual(0, firstList->size(), std::wstring(L"List should be empty").c_str());
+			Assert::AreEqual(0, list->get(1)->size(), std::wstring(L"Element at index 1 should be empty list").c_str());
 		}
 	};
 }
