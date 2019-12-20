@@ -316,7 +316,7 @@ namespace DataStructuresandAlgorithmsTest
 
 		TEST_METHOD(TestArrayList6) {
 			ArrayList<LinkedList<int>*>* list = new ArrayList<LinkedList<int>*>(new LinkedList<int>(), 10);
-			
+
 			list->get(0)->addFirst(5);
 
 			LinkedList<int>* firstList = list->get(0);
@@ -324,6 +324,17 @@ namespace DataStructuresandAlgorithmsTest
 			Assert::AreEqual(5, firstList->removeFirst(), std::wstring(L"First element should be 5").c_str());
 			Assert::AreEqual(0, firstList->size(), std::wstring(L"List should be empty").c_str());
 			Assert::AreEqual(0, list->get(1)->size(), std::wstring(L"Element at index 1 should be empty list").c_str());
+		}
+
+		TEST_METHOD(TestArrayList7) {
+			ArrayList<LinkedList<int>*>* list = new ArrayList<LinkedList<int>*>(nullptr, 10);
+
+			list->set(new LinkedList<int>(5), 0);
+
+			LinkedList<int>* firstList = list->get(0);
+			Assert::AreEqual(1, firstList->size(), std::wstring(L"List should be size 1").c_str());			
+			Assert::AreEqual(5, firstList->removeFirst(), std::wstring(L"First element should be 5").c_str());			
+			Assert::IsNull(list->get(1), std::wstring(L"Element at index 1 should be null").c_str());
 		}
 	};
 }
